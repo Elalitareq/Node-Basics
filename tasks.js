@@ -89,6 +89,9 @@ function help(){
   console.log(
 `hello /text/: Returns hello /text/!
 help        : Reutrns commands user can use
+list        : Lists the tasks in task-list
+add         : Adds a task to task-list
+remove      : Removes a take from tast-list by its number
 exit or quit: Quits the application`)
 }
 
