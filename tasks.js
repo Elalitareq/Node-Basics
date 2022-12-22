@@ -46,12 +46,15 @@ function onDataReceived(text) {
   else if(text==='list\n'){
     list()
   }
+  else if(text.startsWith('add')){
+    addTask(text)
+  }
   else{
     unknownCommand(text);
   }
 }
 
-let arrayList=["potato","tomato","carrot","chicken","beef"]
+let arrayList=[ ]
 
 /**
  * prints "unknown command"
@@ -85,6 +88,7 @@ function help(){
 help        : Reutrns commands user can use
 exit or quit: Quits the application`)
 }
+
 /**
  * lists the items in the list according to number
  *
@@ -95,6 +99,21 @@ function list(){
     console.log(`${index+1}-${element}`)
 })
 }
+/**
+ * adds items to the list
+ *
+ * @returns {void}
+ */
+function addTask(task){ 
+  if(task==="add\n") {
+    console.log(
+`the correct syntex for add is:
+                                add /task/`)
+  }
+  else{
+  arrayList.push(task.replace("add ","").trim())}
+}
+
 
 /**
  * Exits the application
