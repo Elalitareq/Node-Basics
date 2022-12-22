@@ -43,11 +43,15 @@ function onDataReceived(text) {
   else if(text==='help\n'){
     help()
   }
+  else if(text==='list\n'){
+    list()
+  }
   else{
     unknownCommand(text);
   }
 }
 
+let arrayList=["potato","tomato","carrot","chicken","beef"]
 
 /**
  * prints "unknown command"
@@ -81,6 +85,16 @@ function help(){
 help        : Reutrns commands user can use
 exit or quit: Quits the application`)
 }
+/**
+ * lists the items in the list according to number
+ *
+ * @returns {void}
+ */
+function list(){  
+  arrayList.map((element,index)=>{
+    console.log(`${index+1}-${element}`)
+})
+}
 
 /**
  * Exits the application
@@ -91,6 +105,7 @@ function quit(){
   console.log('Quitting now, goodbye!')
   process.exit();
 }
+
 
 // The following line starts the application
 startApp("Tareq El-Ali")
