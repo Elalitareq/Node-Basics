@@ -46,12 +46,22 @@ function onDataReceived(text) {
     remove(text);
   } else if (text.startsWith("edit")) {
     edit(text);
+  } else if (text.startsWith("check")) {
+    check(text);
+  } else if (text.startsWith("uncheck")) {
+    unCheck(text);
   } else {
     unknownCommand(text);
   }
 }
 
-let arrayList = ["[✓]potato","[ ]tomato","[✓]banana","[ ]milk","[✓]haircut"];
+let arrayList = [
+  "[✓]potato",
+  "[ ]tomato",
+  "[✓]banana",
+  "[ ]milk",
+  "[✓]haircut",
+];
 
 /**
  * prints "unknown command"
@@ -163,6 +173,50 @@ function edit(taskNum) {
       ? (arrayList[arrayList.length - 1] = taskNum.replace("edit ", "").trim())
       : arrayList[index] !== undefined
       ? (arrayList[index] = taskNum.replace(`edit ${index + 1}`, "").trim())
+      : console.log(`No task with number ${index + 1}`);
+  }
+}
+/**
+ * checks tasks in task-list
+ *
+ * @returns {void}
+ */
+function check(taskNum) {
+  if (taskNum === "check\n") {
+    console.log(
+      `the correct syntex for check is:
+                                to check a specific task-number  : check /task-number/`
+    );
+  } else {
+    let index = taskNum.split(" ")[1] - 1;
+    !parseInt(index)
+      ? console.log(
+          `${taskNum.split(" ")[1].trim()} is not a valid task-number`
+        )
+      : arrayList[index] !== undefined
+      ? (arrayList[index] = arrayList[index].replace(` `, "✓").trim())
+      : console.log(`No task with number ${index + 1}`);
+  }
+}
+/**
+ * unchecks tasks in task-list
+ *
+ * @returns {void}
+ */
+function unCheck(taskNum) {
+  if (taskNum === "uncheck\n") {
+    console.log(
+      `the correct syntex for uncheck is:
+                                to uncheck a specific task-number  : uncheck /task-number/`
+    );
+  } else {
+    let index = taskNum.split(" ")[1] - 1;
+    !parseInt(index)
+      ? console.log(
+          `${taskNum.split(" ")[1].trim()} is not a valid task-number`
+        )
+      : arrayList[index] !== undefined
+      ? (arrayList[index] = arrayList[index].replace(`✓`, " ").trim())
       : console.log(`No task with number ${index + 1}`);
   }
 }
