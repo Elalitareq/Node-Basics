@@ -49,6 +49,9 @@ function onDataReceived(text) {
   else if(text.startsWith('add')){
     addTask(text)
   }
+  else if(text.startsWith('remove')){
+    remove(text)
+  }
   else{
     unknownCommand(text);
   }
@@ -113,8 +116,21 @@ function addTask(task){
   else{
   arrayList.push(task.replace("add ","").trim())}
 }
-
-
+/**
+ * Exits the application
+ *
+ * @returns {void}
+ */
+function remove(taskNum){
+  if(taskNum==="remove\n") {
+    console.log(
+`the correct syntex for remove is:
+                                  remove /task-number/`)
+  }
+  else{
+  taskNum.replace("remove ","").trim()}
+  arrayList.splice(taskNum-1,1)
+}
 /**
  * Exits the application
  *
