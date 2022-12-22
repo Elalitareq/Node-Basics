@@ -102,9 +102,19 @@ list        : Lists the tasks in task-list
 add         : Adds a task to task-list
               syntex: add /task/
 
-remove      : Removes a take from tast-list by its number
+remove      : Removes a task from task-list by its number
               syntex: remove /task-number/
-              
+
+edit        : Edits a task in task-list by its number
+              syntex to edit the last task    : edit /new-task/
+              syntex to edit a task by number : edit /task-number/ /new-task/
+
+check       : Checks a task by number
+              syntex: check /task-number/
+
+uncheck       : unchecks a task by number
+              syntex: uncheck /task-number/
+
 exit or quit: Quits the application
               syntex: quit
                       exit
