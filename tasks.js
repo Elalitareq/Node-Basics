@@ -15,7 +15,6 @@ function startApp(name) {
   console.log(`Welcome to ${name}'s application!`);
   console.log("--------------------");
 }
-
 /**
  * Decides what to do depending on the data that was received
  * This function receives the input sent by the user.
@@ -54,14 +53,13 @@ function onDataReceived(text) {
     unknownCommand(text);
   }
 }
+var objList, data;
+const fs=require('fs')
 
-let arrayList = [
-  "[✓]potato",
-  "[ ]tomato",
-  "[✓]banana",
-  "[ ]milk",
-  "[✓]haircut",
-];
+fs.readFileSync('database.json',data)
+newData=JSON.parse(data)
+
+arrayList=objList.taskList
 
 /**
  * prints "unknown command"
@@ -236,6 +234,13 @@ function unCheck(taskNum) {
  * @returns {void}
  */
 function quit() {
+  const fs = require('fs');
+  const data = JSON.stringify(objList);
+  try {
+    fs.writeFileSync('database.json', data);
+  } catch (e) {
+    console.error(e);
+  }
   console.log("Quitting now, goodbye!");
   process.exit();
 }
