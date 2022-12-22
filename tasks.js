@@ -51,7 +51,7 @@ function onDataReceived(text) {
   }
 }
 
-let arrayList = [];
+let arrayList = ["[✓]potato","[ ]tomato","[✓]banana","[ ]milk","[✓]haircut"];
 
 /**
  * prints "unknown command"
@@ -124,7 +124,7 @@ function addTask(task) {
                                 add /task/`
     );
   } else {
-    arrayList.push(task.replace("add ", "").trim());
+    arrayList.push(task.replace("add ", "[ ]").trim());
   }
 }
 /**
