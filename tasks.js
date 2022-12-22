@@ -88,11 +88,24 @@ function hello(anything){
 function help(){
   console.log(
 `hello /text/: Returns hello /text/!
+              syntex: hello /text/
+
 help        : Reutrns commands user can use
+              syntex: help
+
 list        : Lists the tasks in task-list
+              syntex: list
+
 add         : Adds a task to task-list
+              syntex: add /task/
+
 remove      : Removes a take from tast-list by its number
-exit or quit: Quits the application`)
+              syntex: remove /task-number/
+              
+exit or quit: Quits the application
+              syntex: quit
+                      exit
+`)
 }
 
 /**
