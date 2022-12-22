@@ -133,7 +133,7 @@ function addTask(task){
   arrayList.push(task.replace("add ","").trim())}
 }
 /**
- * Exits the application
+ * removes a task from task-list
  *
  * @returns {void}
  */
@@ -144,8 +144,14 @@ function remove(taskNum){
                                   remove /task-number/`)
   }
   else{
-  taskNum.replace("remove ","").trim()}
-  arrayList.splice(taskNum-1,1)
+  let index=taskNum.replace("remove ","").trim()-1
+  if (arrayList[index]!==undefined){
+  arrayList.splice(index,1)
+  }
+  else {
+    console.log(`No task with number ${index+1}`);
+  }
+}
 }
 /**
  * Exits the application
