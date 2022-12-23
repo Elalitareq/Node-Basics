@@ -53,13 +53,12 @@ function onDataReceived(text) {
     unknownCommand(text);
   }
 }
-var saveFile
-if(process.argv[2]==null){
-  saveFile="database.json"
-  console.log(process.argv[2])
-}
-else{
-  saveFile=process.argv[2]
+var saveFile;
+if (process.argv[2] == null) {
+  saveFile = "database.json";
+  console.log(process.argv[2]);
+} else {
+  saveFile = process.argv[2];
 }
 const fs = require("fs");
 var arrayList;
@@ -67,7 +66,7 @@ try {
   data = fs.readFileSync(saveFile);
   var objList = JSON.parse(data);
 } catch (err) {
-  console.log(err)
+  console.log(err);
   // Here you get the error when the file was not found,
   // but you also get any other error
 }
@@ -128,7 +127,7 @@ edit        : Edits a task in task-list by its number
 check       : Checks a task by number
               syntex: check /task-number/
 
-uncheck       : unchecks a task by number
+uncheck     : Unchecks a task by number
               syntex: uncheck /task-number/
 
 exit or quit: Quits the application
@@ -170,7 +169,7 @@ function addTask(task) {
  */
 function remove(taskNum) {
   if (taskNum === "remove\n") {
-    arrayList.splice(-1, 1)
+    arrayList.splice(-1, 1);
   } else {
     let index = taskNum.replace("remove ", "").trim() - 1;
     arrayList[index] !== undefined
@@ -193,9 +192,13 @@ function edit(taskNum) {
   } else {
     let index = taskNum.split(" ")[1] - 1;
     !parseInt(index)
-      ? (arrayList[arrayList.length - 1] = arrayList[arrayList.length-1].slice(0,3)+taskNum.replace("edit ", "").trim())
+      ? (arrayList[arrayList.length - 1] =
+          arrayList[arrayList.length - 1].slice(0, 3) +
+          taskNum.replace("edit ", "").trim())
       : arrayList[index] !== undefined
-      ? (arrayList[index] = arrayList[index].slice(0,3)+taskNum.replace(`edit ${index + 1}`, "").trim())
+      ? (arrayList[index] =
+          arrayList[index].slice(0, 3) +
+          taskNum.replace(`edit ${index + 1}`, "").trim())
       : console.log(`No task with number ${index + 1}`);
   }
 }
@@ -212,12 +215,14 @@ function check(taskNum) {
     );
   } else {
     let index = taskNum.split(" ")[1] - 1;
-    !parseInt(index)
+    !parseInt(index)&&index!==0
       ? console.log(
           `${taskNum.split(" ")[1].trim()} is not a valid task-number`
         )
       : arrayList[index] !== undefined
-      ? (arrayList[index] = arrayList[index].split("]")[0].replace(` `, "✓") +`]${arrayList[index].split("]")[1]}`)
+      ? (arrayList[index] =
+          arrayList[index].split("]")[0].replace(` `, "✓") +
+          `]${arrayList[index].split("]")[1]}`)
       : console.log(`No task with number ${index + 1}`);
   }
 }
@@ -253,6 +258,7 @@ function quit() {
   const data = JSON.stringify(objList);
   try {
     fs.writeFileSync(saveFile, data);
+    console.log("Saving Tasks")
   } catch (e) {
     console.error(e);
   }
