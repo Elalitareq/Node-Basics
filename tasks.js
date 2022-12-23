@@ -53,13 +53,24 @@ function onDataReceived(text) {
     unknownCommand(text);
   }
 }
-var objList, data;
-const fs=require('fs')
 
-fs.readFileSync('database.json',data)
-newData=JSON.parse(data)
+const fs = require("fs");
+var arrayList;
+try {
+  data = fs.readFileSync('database.json');
+  var objList = JSON.parse(data);
+} catch (err) {
+  console.log("empty database")
+  // Here you get the error when the file was not found,
+  // but you also get any other error
+}
 
-arrayList=objList.taskList
+if (objList !== undefined) {
+  arrayList = objList.taskList;
+} else {
+  objList = { taskList: [] };
+  arrayList = objList.taskList;
+}
 
 /**
  * prints "unknown command"
@@ -234,10 +245,10 @@ function unCheck(taskNum) {
  * @returns {void}
  */
 function quit() {
-  const fs = require('fs');
+  const fs = require("fs");
   const data = JSON.stringify(objList);
   try {
-    fs.writeFileSync('database.json', data);
+    fs.writeFileSync("database.json", data);
   } catch (e) {
     console.error(e);
   }
