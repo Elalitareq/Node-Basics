@@ -53,14 +53,21 @@ function onDataReceived(text) {
     unknownCommand(text);
   }
 }
-
+var saveFile
+if(process.argv[2]==null){
+  saveFile="database.json"
+  console.log(process.argv[2])
+}
+else{
+  saveFile=process.argv[2]
+}
 const fs = require("fs");
 var arrayList;
 try {
-  data = fs.readFileSync('database.json');
+  data = fs.readFileSync(saveFile);
   var objList = JSON.parse(data);
 } catch (err) {
-  console.log("empty database")
+  console.log(err)
   // Here you get the error when the file was not found,
   // but you also get any other error
 }
@@ -248,7 +255,7 @@ function quit() {
   const fs = require("fs");
   const data = JSON.stringify(objList);
   try {
-    fs.writeFileSync("database.json", data);
+    fs.writeFileSync(saveFile, data);
   } catch (e) {
     console.error(e);
   }
