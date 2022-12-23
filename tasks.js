@@ -170,10 +170,7 @@ function addTask(task) {
  */
 function remove(taskNum) {
   if (taskNum === "remove\n") {
-    console.log(
-      `the correct syntex for remove is:
-                                  remove /task-number/`
-    );
+    arrayList.splice(-1, 1)
   } else {
     let index = taskNum.replace("remove ", "").trim() - 1;
     arrayList[index] !== undefined
