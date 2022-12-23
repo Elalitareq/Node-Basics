@@ -217,7 +217,7 @@ function check(taskNum) {
           `${taskNum.split(" ")[1].trim()} is not a valid task-number`
         )
       : arrayList[index] !== undefined
-      ? (arrayList[index] = arrayList[index].replace(` `, "✓").trim())
+      ? (arrayList[index] = arrayList[index].split("]")[0].replace(` `, "✓") +`]${arrayList[index].split("]")[1]}`)
       : console.log(`No task with number ${index + 1}`);
   }
 }
