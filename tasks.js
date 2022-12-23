@@ -196,9 +196,9 @@ function edit(taskNum) {
   } else {
     let index = taskNum.split(" ")[1] - 1;
     !parseInt(index)
-      ? (arrayList[arrayList.length - 1] = taskNum.replace("edit ", "").trim())
+      ? (arrayList[arrayList.length - 1] = arrayList[arrayList.length-1].slice(0,3)+taskNum.replace("edit ", "").trim())
       : arrayList[index] !== undefined
-      ? (arrayList[index] = taskNum.replace(`edit ${index + 1}`, "").trim())
+      ? (arrayList[index] = arrayList[index].slice(0,3)+taskNum.replace(`edit ${index + 1}`, "").trim())
       : console.log(`No task with number ${index + 1}`);
   }
 }
